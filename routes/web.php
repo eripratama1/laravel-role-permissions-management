@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth']], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/list-user', [App\Http\Controllers\HomeController::class, 'listUser'])->name('list-user');
+    Route::get('/assign-role',[\App\Http\Controllers\HomeController::class,'assignRole'])->name('assign-role');
+});

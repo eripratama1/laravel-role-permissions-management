@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class HomeController extends Controller
 {
@@ -23,6 +26,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $post = Post::latest()->get();
+        return view('home', ['post' => $post]);
+    }
+
+    public function listUser()
+    {
+        $user = User::get();
+        return view('ListUser', [
+            'user' => $user,
+        ]);
+    }
+
+    public function assignRole()
+    {
+        $role = Role::get();
+        return view('assign-role', ['role' => $role]);
+    }
+
+    public function setRole()
+    {
+        //
     }
 }

@@ -17,17 +17,25 @@
                         <table class="table table-bordered table-hovered">
                             <tr>
                                 <thead>
-                                    <th>Title</th>
-                                    <th>Content</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
                                     <th>Action</th>
                                 </thead>
-                                @foreach ($post as $item)
+                                @foreach ($user as $itemUser)
                                     <tbody>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->content }}</td>
+                                        <td>{{ $itemUser->name }}</td>
+                                        <td>{{ $itemUser->email }}</td>
                                         <td>
-                                            <a href="" class="btn btn-warning btn-sm">Update</a>
-                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                            {{ $itemUser->roles->pluck('name')->first() }} |
+                                            {{ $itemUser->getRoleNames('name')->first() }}
+                                            
+                                        </td>
+                                        <td>
+                                            <form action="">
+                                                <a href="{{ route('assign-role') }}" class="btn btn-info btn-sm">Assign role & permission</a>
+                                                <a href="" class="btn btn-warning btn-sm">Update</a>
+                                                <button class="btn btn-danger btn-sm">Delete</button>    
+                                            </form>                                            
                                         </td>
                                     </tbody>
                                 @endforeach
