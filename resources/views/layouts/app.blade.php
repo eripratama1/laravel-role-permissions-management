@@ -57,6 +57,9 @@
                                 <li class="nav-item">
                                     <a href="{{ route('list-user') }}" class="nav-link">List User</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('list-permission') }}" class="nav-link">List Permissions & Role's</a>
+                                </li>
                             @endrole
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

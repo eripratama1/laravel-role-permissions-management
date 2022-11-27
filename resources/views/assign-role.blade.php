@@ -13,23 +13,29 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        <form action="">
+                        <form action="{{ route('set-role',$user) }}" method="POST">
+                            @csrf
+                            @method('PUT')
                             <div class="form-group mb-3">
                                 <label for="">Name</label>
-                                <input type="text" name="name" class="form-control" id="">
+                                <input type="text" name="name" value="{{ $user->name }}" class="form-control" id="">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="">Email</label>
-                                <input type="text" name="email" class="form-control" id="">
+                                <input type="text" name="email" class="form-control" value="{{ $user->email }}" id="">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="">Pilih Role</label>
+                                <label for="">Role Sekarang : {{ $user->roles->pluck('name')->first() }}</label>
                                 <select name="role" id="" class="form-control">
                                     @foreach ($role as $itemRole)
-                                        <option value="{{ $itemRole->id }}">{{ $itemRole->name }}</option>
+                                        <option value="{{ $itemRole->id }}"
+                                            @selected($itemRole->id == $user->roles->pluck('id')->first())
+                                            >{{ $itemRole->name }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-info btn-sm">Update</button>
                             </div>
                         </form>
                     </div>

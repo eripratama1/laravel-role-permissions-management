@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <div class="card">
-                    <div class="card-header">{{ __('List User') }}</div>
+                    <div class="card-header">{{ __('List Permission & Roles') }}</div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -15,25 +15,25 @@
                         @endif
 
                         <table class="table table-bordered table-hovered">
+                            <a href="{{ route('create-permission') }}" class="btn btn-primary btn-sm m-1 mb-2">Create Permission</a>
+                            <a href="{{ route('create-permission') }}" class="btn btn-success btn-sm m-1 mb-2">Create Role</a>
                             <tr>
                                 <thead>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
+                                    <th>Role Name</th>
+                                    <th>Permission</th>
                                     <th>Action</th>
                                 </thead>
-                                @foreach ($user as $itemUser)
+                                @foreach ($role as $item)
                                     <tbody>
-                                        <td>{{ $itemUser->name }}</td>
-                                        <td>{{ $itemUser->email }}</td>
+                                        <td>{{ $item->name }}</td>
                                         <td>
-                                            {{-- {{ $itemUser->roles->pluck('name')->first() }} | --}}
-                                            {{ $itemUser->getRoleNames('name')->first() }} 
+                                            @foreach ($item->getAllPermissions() as $itemPermission)
+                                                {{ $itemPermission->name }}
+                                            @endforeach
                                         </td>
                                         <td>
                                             <form action="">
-                                                <a href="{{ route('assign-role',$itemUser->id) }}" class="btn btn-info btn-sm">Assign role</a>
-                                                
+                                                <a href="{{ route('assign-permission',$item->id) }}" class="btn btn-info btn-sm">Assign permission</a>
                                                 <a href="" class="btn btn-warning btn-sm">Update</a>
                                                 <button class="btn btn-danger btn-sm">Delete</button>    
                                             </form>                                            
