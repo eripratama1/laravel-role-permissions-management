@@ -13,26 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        <table class="table table-bordered table-hovered">
-                            <tr>
-                                <thead>
-                                    <th>Title</th>
-                                    <th>Content</th>
-                                    <th>Action</th>
-                                </thead>
-                                @foreach ($post as $item)
-                                    <tbody>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->content }}</td>
-                                        <td>
-                                            <a href="" class="btn btn-warning btn-sm">Update</a>
-                                            <a href="" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tbody>
-                                @endforeach
-                            </tr>
-                        </table>
+                        {{ __('Logged In') }}
                     </div>
                 </div>
             </div>

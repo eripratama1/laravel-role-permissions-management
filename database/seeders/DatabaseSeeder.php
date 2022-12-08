@@ -23,12 +23,16 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $this->call(PostSeeder::class);
-        // $this->call(RoleSeeder::class);
+     
+        /**
+         * Memanggil RoleSeeder untuk menambahkan list role ke tabel roles
+         * Membuat user baru sekaligus menambahkan role 'SuperAdmin'
+         * pada user tersebut.
+         */
+        $this->call(RoleSeeder::class);
 
         $user = User::create([
             'name' => 'Super Admin',
-            // 'username' => 'superadmin',
             'email' => 'admin@email.test',
             'password' => bcrypt('password'),
         ]);

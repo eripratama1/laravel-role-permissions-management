@@ -53,7 +53,16 @@
                                 </li>
                             @endif
                         @else
-                            @role('SuperAdmin')
+                            
+                            {{-- 
+                                Menggunakan blade directives @role 
+                                untuk mendefinisikan role apa saja yang bisa mengakses
+                                Halaman List User, List Permission & role
+
+                                Jadi tidak semua role bisa mengakses route tersebut
+                                --}}
+
+                            @role(['SuperAdmin','Admin'])
                                 <li class="nav-item">
                                     <a href="{{ route('list-user') }}" class="nav-link">List User</a>
                                 </li>
@@ -61,6 +70,7 @@
                                     <a href="{{ route('list-permission') }}" class="nav-link">List Permissions & Role's</a>
                                 </li>
                             @endrole
+                        
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

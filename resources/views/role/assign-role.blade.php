@@ -14,6 +14,10 @@
                             </div>
                         @endif
                         <form action="{{ route('set-role',$user) }}" method="POST">
+                            {{--
+                                 action Route set-role untuk menambahkan role tertentu ke user
+                                 method yang digunakan PUT sama seperti proses update data. 
+                                --}}
                             @csrf
                             @method('PUT')
                             <div class="form-group mb-3">
@@ -27,6 +31,9 @@
                             <div class="form-group mb-3">
                                 <label for="">Role Sekarang : {{ $user->roles->pluck('name')->first() }}</label>
                                 <select name="role" id="" class="form-control">
+                                    {{-- looping list role dari tabel 
+                                        Jika user sudah memiliki role tampilkan role-nya
+                                        --}}
                                     @foreach ($role as $itemRole)
                                         <option value="{{ $itemRole->id }}"
                                             @selected($itemRole->id == $user->roles->pluck('id')->first())

@@ -16,6 +16,9 @@
 
                         <form action="{{ route('store-permission') }}" method="POST">
                             @csrf
+                            {{-- 
+                                Menambahkan permission baru 
+                            --}}
                             <div class="form-group mb-3">
                                 <label for="">Permission Name</label>
                                 <input type="text" name="name" class="form-control">
